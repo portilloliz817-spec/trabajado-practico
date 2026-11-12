@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo | STAR HAIR SALON</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Login Simulados -->
+    <div id="login-overlay">
+        <div class="card" style="padding: 2rem; width: 350px;">
+            <h2 style="text-align: center; color: var(--accent-color);">Admin Login</h2>
+            <p style="text-align: center; font-size: 0.8rem; margin-bottom: 1rem;">(Usa cualquier credencial para demo)</p>
+            <form id="login-form">
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" id="admin-user" placeholder="Usuario" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd;" required>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <input type="password" id="admin-pass" placeholder="Contraseña" style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd;" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="admin-container">
+        <aside class="sidebar">
+            <h2>SHS Admin</h2>
+            <nav class="nav-admin">
+                <button onclick="showSection('dashboard')" id="nav-dashboard" class="active">Dashboard</button>
+                <button onclick="showSection('turnos')" id="nav-turnos">Gestión de Turnos</button>
+                <button onclick="showSection('servicios')" id="nav-servicios">Gestión de Servicios</button>
+                <button onclick="logout()" style="margin-top: 2rem; background: #e74c3c;">Cerrar Sesión</button>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="section-dashboard">
+                <h1 class="section-title" style="text-align: left;">Dashboard</h1>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Turnos</h3>
+                        <p id="stat-total">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pendientes</h3>
+                        <p id="stat-pendientes">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Confirmados</h3>
+                        <p id="stat-confirmados">0</p>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <h3>Últimos Turnos</h3>
+                    <table id="recent-appointments-table">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Servicio</th>
+                                <th>Fecha/Hora</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody><!-- JS --></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Turnos Section -->
+            <section id="section-turnos" style="display: none;">
+                <h1 class="section-title" style="text-align: left;">Gestión de Turnos</h1>
+                <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem;">
+                    <input type="text" id="search-turnos" placeholder="Buscar por cliente..." style="padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; flex: 1;">
+                    <select id="filter-status" style="padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd;">
+                        <option value="todos">Todos los estados</option>
+                        <option value="pendiente">Pendientes</option>
+                        <option value="confirmado">Confirmados</option>
+                        <option value="cancelado">Cancelados</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table id="all-appointments-table">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Teléfono</th>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody><!-- JS --></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Servicios Section -->
+            <section id="section-servicios" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h1 class="section-title" style="text-align: left; margin-bottom: 0;">Gestión de Servicios</h1>
+                    <button onclick="openServiceModal()" class="btn">Nuevo Servicio</button>
+                </div>
+                <div class="table-container">
+                    <table id="admin-services-table">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody><!-- JS --></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Servicio -->
+    <div id="service-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Nuevo Servicio</h2>
+            <form id="service-form" style="margin-top: 1.5rem;">
+                <input type="hidden" id="edit-service-id">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Nombre</label>
+                    <input type="text" id="service-name" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Descripción</label>
+                    <textarea id="service-desc" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;" required></textarea>
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Precio</label>
+                    <input type="number" id="service-price" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label>URL Imagen</label>
+                    <input type="text" id="service-img" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;" required>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="btn" style="flex: 1;">Guardar</button>
+                    <button type="button" onclick="closeServiceModal()" class="btn" style="background: #999; flex: 1;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

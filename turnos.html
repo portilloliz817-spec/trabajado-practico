@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Turno | STAR HAIR SALON</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .booking-container {
+            padding: 5rem 5%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .booking-card {
+            width: 100%;
+            max-width: 600px;
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(255, 209, 220, 0.3);
+        }
+
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">STAR HAIR SALON</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="turnos.html">Turnos</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+        <a href="turnos.html" class="btn">Reservar Turno</a>
+    </nav>
+
+    <main class="booking-container">
+        <div class="card booking-card">
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Reserva tu Turno</h2>
+            <div id="success-alert" class="success-message">
+                ¡Turno registrado con éxito! Te esperamos.
+            </div>
+            <form id="appointment-form">
+                <div class="form-group">
+                    <label for="name">Nombre y Apellido</label>
+                    <input type="text" id="name" required placeholder="Ej: Maria García">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" required placeholder="Ej: 11 1234-5678">
+                </div>
+                <div class="form-group">
+                    <label for="service">Servicio</label>
+                    <select id="service" required>
+                        <option value="">Selecciona un servicio</option>
+                        <!-- Cargado dinámicamente -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Fecha</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Horario</label>
+                    <select id="time" required>
+                        <option value="">Selecciona un horario</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Confirmar Reserva</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 STAR HAIR SALON. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/turnos.js"></script>
+</body>
+</html>

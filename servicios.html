@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios | STAR HAIR SALON</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .services-header {
+            background-color: var(--primary-color);
+            padding: 4rem 5%;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .services-container {
+            padding: 5rem 5%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .service-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .service-info h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">STAR HAIR SALON</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="turnos.html">Turnos</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+        <a href="turnos.html" class="btn">Reservar Turno</a>
+    </nav>
+
+    <header class="services-header">
+        <h1>Nuestros Servicios</h1>
+        <p>Descubre el tratamiento perfecto para ti</p>
+    </header>
+
+    <main class="services-container">
+        <div class="services-grid" id="services-list">
+            <!-- Cargado dinámicamente -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 STAR HAIR SALON. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/servicios.js"></script>
+</body>
+</html>

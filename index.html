@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAR HAIR SALON | Elegancia y Estilo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(255, 209, 220, 0.4), rgba(255, 209, 220, 0.4)), url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--white);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .featured-services {
+            padding: 5rem 5%;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .service-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .contact-section {
+            padding: 5rem 5%;
+            background-color: var(--secondary-color);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            max-width: 500px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            background: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">STAR HAIR SALON</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="turnos.html">Turnos</a></li>
+            <li><a href="admin.html">Admin</a></li>
+        </ul>
+        <a href="turnos.html" class="btn">Reservar Turno</a>
+    </nav>
+
+    <header class="hero">
+        <h1>Resalta tu belleza natural</h1>
+        <p>En STAR HAIR SALON nos dedicamos a cuidar tu cabello con los mejores tratamientos y profesionales.</p>
+        <a href="servicios.html" class="btn">Conoce nuestros servicios</a>
+    </header>
+
+    <section class="featured-services">
+        <h2 class="section-title">Servicios Destacados</h2>
+        <div class="services-grid" id="featured-grid">
+            <!-- Cargado vía JS -->
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="contact-info">
+            <h2 style="color: var(--accent-color)">Contacto y Ubicación</h2>
+            <p><strong>Dirección:</strong> Av. Principal 1234, Ciudad Estrella</p>
+            <p><strong>Teléfono:</strong> +54 9 11 1234-5678</p>
+            <p><strong>Email:</strong> info@starhairsalon.com</p>
+            <p><strong>Horario:</strong> Mar a Sáb: 09:00 - 20:00</p>
+        </div>
+        <div class="map-placeholder">
+            <p>[ Mapa de Ubicación ]</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 STAR HAIR SALON. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const services = getServices().slice(0, 3);
+            const grid = document.getElementById('featured-grid');
+            
+            services.forEach(service => {
+                const card = document.createElement('div');
+                card.className = 'card service-card';
+                card.innerHTML = `
+                    <img src="${service.img}" alt="${service.name}">
+                    <div class="service-info">
+                        <h3>${service.name}</h3>
+                        <p>${service.description}</p>
+                        <p style="font-weight: bold; color: var(--accent-color); margin-top: 10px;">$${service.price}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
